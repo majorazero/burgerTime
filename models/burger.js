@@ -19,5 +19,10 @@ module.exports = {
         udBurger: udBurger
       });
     });
+  },
+  updateOne : function(bool,id,callback){
+    orm.updateOne("burgers","devoured",(bool === "true"),parseInt(id),function(data){
+      callback(data);
+    });
   }
 };

@@ -9,7 +9,8 @@ module.exports = function(app){
   });
 
   app.put("/",function(req,res){
-    console.log("updating!");
-    
+    burgers.updateOne(req.body.bool,req.body.id,function(data){
+      res.send("Updated!");
+    });
   });
 };

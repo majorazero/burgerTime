@@ -13,6 +13,7 @@
       <h2>Burger Name: {{burger_name}} </h2>
     </div>
     {{/each}}
+    <button id ='regurgitate' value = {{dBurger.0.id}}>Regurgitate</button>
   </div>
 </div>
 
@@ -20,11 +21,19 @@
   $("#devourButton").on("click",function(){
     $.ajax({
       type: "PUT",
-      data: $(this).attr("value")
+      data: {bool:true, id: $(this).attr("value")}
     }).then(function(){
-      console.log(3);
       //refreshes the page
-      location.reload();
+      location.reload(true);
+    });
+  });
+  $("#regurgitate").on("click",function(){
+    $.ajax({
+      type: "PUT",
+      data: {bool:false, id: $(this).attr("value")}
+    }).then(function(){
+      //refreshes the page
+      location.reload(true);
     });
   });
 </script>
