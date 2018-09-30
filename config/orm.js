@@ -1,7 +1,7 @@
 const connection = require("./connection.js");
 
-const selectAll = function(callback){
-  connection.query("SELECT * FROM burgers",function(err,res){
+const selectAll = function(tableName,callback){
+  connection.query("SELECT * FROM ??",[tableName],function(err,res){
     if(err){
       return res.status(500).end();
     }
@@ -14,7 +14,7 @@ const insertOne = function(){
 };
 
 const updateOne = function(){
-  console.log(3);
+  //connection.query("UPDATE ?? SET ?? = ? WHERE ?? = ?");
 };
 
 module.exports = {

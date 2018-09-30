@@ -2,7 +2,7 @@ const orm = require("../config/orm.js");
 
 module.exports = {
   selectAll : function(callback){
-    orm.selectAll(function(data){
+    orm.selectAll("burgers",function(data){
       let dBurger = [];
       let udBurger = [];
       //we'll reformat the 0/1 to false/true
