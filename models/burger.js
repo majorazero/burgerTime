@@ -20,6 +20,11 @@ module.exports = {
       });
     });
   },
+  insertOne : function(burger,callback){
+    orm.insertOne("burgers","burger_name",burger,function(data){
+      callback(data);
+    });
+  },
   updateOne : function(bool,id,callback){
     orm.updateOne("burgers","devoured",(bool === "true"),parseInt(id),function(data){
       callback(data);

@@ -1,39 +1,56 @@
-<div class="containers">
-  <div class="jumbotron">
-    <h1>Uneaten Burger</h1>
-    {{#each udBurger}}
-      <div>
-        <h2>Burger Name: {{burger_name}} </h2>
-      </div>
-    {{/each}}
-    <button id ='devourButton' value = {{udBurger.0.id}}>Devour</button>
-    <h1>Eaten Burger</h1>
-    {{#each dBurger}}
+
+<div class="jumbotron">
+  <h1>Uneaten Burger</h1>
+  {{#each udBurger}}
     <div>
       <h2>Burger Name: {{burger_name}} </h2>
     </div>
-    {{/each}}
-    <button id ='regurgitate' value = {{dBurger.0.id}}>Regurgitate</button>
+  {{/each}}
+  <button id ='devourButton' value = {{udBurger.0.id}}>Devour</button>
+  <h1>Eaten Burger</h1>
+  {{#each dBurger}}
+  <div>
+    <h2>Burger Name: {{burger_name}} </h2>
   </div>
+  {{/each}}
+  <button id ='regurgitate' value = {{dBurger.0.id}}>Regurgitate</button>
+
+  <form id="newBurger">
+    New Burger: <input type="text" id="newBurgerInp"></br>
+    <input type="submit" name="submitButton" id="postSubmit">
+  </form>
+
 </div>
 
+
 <script>
-  $("#devourButton").on("click",function(){
-    $.ajax({
-      type: "PUT",
-      data: {bool:true, id: $(this).attr("value")}
-    }).then(function(){
-      //refreshes the page
-      location.reload(true);
-    });
+$("#postSubmit").on("click",function(event){
+  event.preventDefault();
+  console.log($("#newBurgerInp").val());
+  $.ajax({
+    type:"POST",
+    data: {burgerName: $("#newBurgerInp").val()}
+  }).then(function(){
+    $("#newBurgerInp").empty();
+    location.reload(true);
   });
-  $("#regurgitate").on("click",function(){
-    $.ajax({
-      type: "PUT",
-      data: {bool:false, id: $(this).attr("value")}
-    }).then(function(){
-      //refreshes the page
-      location.reload(true);
-    });
+});
+$("#devourButton").on("click",function(){
+  $.ajax({
+    type: "PUT",
+    data: {bool:true, id: $(this).attr("value")}
+  }).then(function(){
+    //refreshes the page
+    location.reload(true);
   });
+});
+$("#regurgitate").on("click",function(){
+  $.ajax({
+    type: "PUT",
+    data: {bool:false, id: $(this).attr("value")}
+  }).then(function(){
+    //refreshes the page
+    location.reload(true);
+  });
+});
 </script>
