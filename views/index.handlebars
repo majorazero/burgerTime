@@ -1,1 +1,30 @@
-{{item}}
+<div class="containers">
+  <div class="jumbotron">
+    <h1>Uneaten Burger</h1>
+    {{#each udBurger}}
+      <div>
+        <h2>Burger Name: {{burger_name}} </h2>
+      </div>
+    {{/each}}
+    <button id ='devourButton' value = {{udBurger.0.id}}>Devour</button>
+    <h1>Eaten Burger</h1>
+    {{#each dBurger}}
+    <div>
+      <h2>Burger Name: {{burger_name}} </h2>
+    </div>
+    {{/each}}
+  </div>
+</div>
+
+<script>
+  $("#devourButton").on("click",function(){
+    $.ajax({
+      type: "PUT",
+      data: $(this).attr("value")
+    }).then(function(){
+      console.log(3);
+      //refreshes the page
+      location.reload();
+    });
+  });
+</script>

@@ -1,7 +1,12 @@
 const connection = require("./connection.js");
 
-const selectAll = function(){
-  console.log(1);
+const selectAll = function(callback){
+  connection.query("SELECT * FROM burgers",function(err,res){
+    if(err){
+      return res.status(500).end();
+    }
+    return callback(res);
+  });
 };
 
 const insertOne = function(){
