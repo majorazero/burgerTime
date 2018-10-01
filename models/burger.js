@@ -1,6 +1,10 @@
 const orm = require("../config/orm.js");
 
 module.exports = {
+  /**
+  * Pulls all burger entries and resorts them as devoured or undevoured before repackaging them as a singular object.
+  * @param {Function} callback - Used to pull data out of the Async.
+  */
   selectAll : function(callback){
     orm.selectAll("burgers",function(data){
       let dBurger = [];
@@ -20,11 +24,22 @@ module.exports = {
       });
     });
   },
+  /**
+  * Inserts a new burger in the database.
+  * @param {String} burger - The name of the new burger.
+  * @param {Function} callback - Used to pull data out of the Async.
+  */
   insertOne : function(burger,callback){
     orm.insertOne("burgers","burger_name",burger,function(data){
       callback(data);
     });
   },
+  /**
+  * Changes the state of a burger to either devoured or undevoured.
+  * @param {Boolean} bool - The new devoured boolean to update.
+  * @param {Integer} id - The id of the specific entry targeted.
+  * @param {Function} callback - Used to pull data out of the Async.
+  */
   updateOne : function(bool,id,callback){
     orm.updateOne("burgers","devoured",(bool === "true"),parseInt(id),function(data){
       callback(data);

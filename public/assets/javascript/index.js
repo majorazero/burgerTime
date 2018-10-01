@@ -1,3 +1,6 @@
+/**
+* Handles the post function when posting new burgers.
+*/
 $("#postSubmit").on("click",function(event){
   event.preventDefault();
   console.log($("#newBurgerInp").val());
@@ -9,6 +12,9 @@ $("#postSubmit").on("click",function(event){
     location.reload(true);
   });
 });
+/**
+* Handles the update function when updating undevoured burgers.
+*/
 $("#devourButton").on("click",function(){
   $.ajax({
     type: "PUT",
@@ -18,6 +24,9 @@ $("#devourButton").on("click",function(){
     location.reload(true);
   });
 });
+/**
+* Handles the update function when updating devoured burgers.
+*/
 $("#regurgitate").on("click",function(){
   $.ajax({
     type: "PUT",
